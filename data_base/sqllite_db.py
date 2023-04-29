@@ -19,3 +19,9 @@ async def sql_read(message):
     for ret in cur.execute('select * from gallery').fetchall():
         await bot.send_photo(message.from_user.id, ret[0], f'{ret[1]}\n Description: {ret[2]}\nPrice {ret[-1]}')
 
+async def sql_read2(message):
+    return cur.execute('select * from gallery').fetchall()
+
+async def sql_delete_command(data):
+    cur.execute('delete from gallery where name == ?', (data,))
+    dbase.commit()

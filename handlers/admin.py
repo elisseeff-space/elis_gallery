@@ -5,6 +5,9 @@ from create_bot import dp, bot
 from aiogram.dispatcher.filters import Text
 from data_base import sqllite_db
 from keyboards import admin_kb
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+idd = None
 
 class FSMAdmin(StatesGroup):
     photo = State()
@@ -77,6 +80,20 @@ async def load_price(message: types.Message, state: FSMContext):
 #            await message.reply(str(data))
 
         await state.finish()
+
+@dp.callback_query_handler(lambda x: x.data and x.data.startswith('del '))
+async def del_callback_run(callback_query: types.CallbackQuery):
+    await sqllite_db.sql_delete_command(callback_query.data.replace('del ',''))
+    await callback_query.answer(text=f'{callback_query.data.replace("del ","")} is deleted.', show_alert=True)
+
+@dp.message_handler(commands='Delete')
+async def delete_item(message: types.Message):
+    if message.from_user.id == idd:
+        read = await sqllite_db.sql_read2()
+        for ret in read:
+            await bot.send_photo(message.from_user.id, ret[0], f'{ret[1]}\nDescription: {ret[2]}\nPrice {ret[-1]}')
+            await bot.send_message(message.from_user.id, text='^^^', reply_markup=InlineKeyboardMarkup().\
+                add(InlineKeyboardButton(f'Delete {ret[1]}', callback_data=f'del {ret[1]}')))
 
 # Handlers Registration
 def register_handlers_admin(dp : Dispatcher):
