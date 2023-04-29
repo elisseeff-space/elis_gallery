@@ -1,5 +1,5 @@
 import logging
-from create_bot import dp
+from create_bot import dp, bot
 from data_base import sqllite_db
 from aiogram.utils import executor
 from handlers import client, admin, other
