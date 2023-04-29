@@ -17,6 +17,6 @@ async def on_startup(_):
     sqllite_db.sql_start()
     await bot.set_webhook(config['URL_APP'])
 
-async def on_startup(_):
+async def on_shutdown(_):
     print('Gallery Bot off!')
     await bot.delete_webhook()
