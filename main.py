@@ -1,5 +1,5 @@
 import logging
-from create_bot import dp, on_startup, on_shutdown
+from create_bot import dp
 from data_base import sqllite_db
 from aiogram.utils import executor
 from handlers import client, admin, other
