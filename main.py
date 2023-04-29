@@ -1,6 +1,6 @@
 import logging
 from create_bot import dp, on_startup, on_shutdown
-#from data_base import sqllite_db
+from data_base import sqllite_db
 from aiogram.utils import executor
 from handlers import client, admin, other
 
@@ -18,9 +18,14 @@ logging.basicConfig(
 )
 logging.warning("Elisseeff Gallery Bot logging is ON!")
 
-#async def on_startup(_):
-#    print('Gallery Bot online!')
-#    sqllite_db.sql_start()
+async def on_startup(_):
+    print('Gallery Bot online!')
+    sqllite_db.sql_start()
+    await bot.set_webhook(config['URL_APP'])
+
+async def on_shutdown(_):
+    print('Gallery Bot off!')
+    await bot.delete_webhook()
 
 #executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
 executor.start_webhook(
