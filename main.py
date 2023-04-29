@@ -3,6 +3,7 @@ from create_bot import dp, bot
 from data_base import sqllite_db
 from aiogram.utils import executor
 from handlers import client, admin, other
+import json
 
 client.register_handlers_client(dp)
 admin.register_handlers_admin(dp)
@@ -10,6 +11,8 @@ other.register_handlers_other(dp)
 
 
 #openai.api_key = config['openai']
+file = open('config.json', 'r')
+config = json.load(file)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
