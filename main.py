@@ -4,8 +4,6 @@ from data_base import sqllite_db
 from aiogram.utils import executor
 from handlers import client, admin, other
 import json
-import telebot
-import flask
 
 client.register_handlers_client(dp)
 admin.register_handlers_admin(dp)
@@ -23,18 +21,6 @@ logging.basicConfig(
     filename="galery_bot.log",
 )
 logging.warning("Elisseeff Gallery Bot logging is ON!")
-
-app = flask.Flask(__name__)
-app.route( '/', methods=['POST'])
-
-def webhook():
-    if flask.request.headers.get('content_type') == 'application/json':
-        json_string = flask.request.get_data().decode('utf-8')
-        update = telebot.types.Update.de_json(json_string)
-        bot.process_new_updates([update])
-        return ''
-    else:
-        flask.abort(403)
 
 async def on_startup(_):
     print('Gallery Bot online!')
