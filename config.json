@@ -1,6 +1,6 @@
 {
-    "TelegramBotToken": "6136503915:AAGK9f1_SxEQhiXP1ugVBwEWeEPgsB_QztU",
-    "WEB_HOOK_URL": "https://d838-2a0c-16c0-505-57e-00-eb56.ngrok-free.app",
-    "APP_PORT": "8443",
-    "APP_HOST": "127.0.0.1"
+    "TelegramBotToken": "",
+    "WEB_HOOK_URL": "",
+    "APP_PORT": "",
+    "APP_HOST": ""
 }
