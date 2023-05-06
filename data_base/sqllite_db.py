@@ -17,9 +17,9 @@ async def sql_add_command(state):
 
 async def sql_read(message):
     for ret in cur.execute('select * from gallery').fetchall():
-        await bot.send_photo(message.from_user.id, ret[0], f'{ret[1]}\n Description: {ret[2]}\nPrice {ret[-1]}')
+        await bot.send_photo(message.from_user.id, ret[0], f'{ret[1]}\n Description: {ret[2]}\nPrice {ret[-1]} Rub.')
 
-async def sql_read2(message):
+async def sql_read2():
     return cur.execute('select * from gallery').fetchall()
 
 async def sql_delete_command(data):

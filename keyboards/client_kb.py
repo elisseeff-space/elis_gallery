@@ -1,8 +1,8 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton#, ReplyKeyboardRemove
 
-b1 = KeyboardButton('/Working Time')
-b2 = KeyboardButton('/Destination')
-b3 = KeyboardButton('/Menu')
+b1 = KeyboardButton('/working_time')
+b2 = KeyboardButton('/destination')
+b3 = KeyboardButton('/gallery')
 b4 = KeyboardButton('Share your PhoneNumber', request_contact=True)
 b5 = KeyboardButton('Send Where I Am', request_location=True)
 
