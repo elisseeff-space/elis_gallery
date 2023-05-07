@@ -1,9 +1,11 @@
 import logging
 from create_bot import dp#, bot
 from data_base import sqllite_db
+from yandex_data_base import yandex_serverless_db
 from aiogram.utils import executor
 from handlers import client, admin, other
 import json
+from datetime import datetime
 
 client.register_handlers_client(dp)
 admin.register_handlers_admin(dp)
@@ -11,7 +13,7 @@ other.register_handlers_other(dp)
 
 
 #openai.api_key = config['openai']
-file = open('config.json', 'r')
+file = open('./cfg/config.json', 'r')
 config = json.load(file)
 
 logger = logging.getLogger(__name__)
@@ -20,10 +22,11 @@ logging.basicConfig(
     #level=logging.DEBUG,
     filename="galery_bot.log",
 )
-logging.warning("Elisseeff Gallery Bot logging is ON!")
+
+now = datetime.now()
 
 async def on_startup(_):
-    print('Gallery Bot online!')
+    logging.warning(f"Elisseeff Gallery Bot logging is ON! {now}")
     sqllite_db.sql_start()
 #    await bot.set_webhook(config['WEB_HOOK_URL'])
 
