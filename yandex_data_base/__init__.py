@@ -1,1 +1,0 @@
-from yandex_data_base import yandex_serverless_db
