@@ -1,8 +1,8 @@
 from aiogram import types, Dispatcher
 from create_bot import dp, bot
-from keyboards import kb_client
+from client_kb import kb_client
 from aiogram.types import ReplyKeyboardRemove
-from data_base import sqllite_db
+from sqlite_db import sql_read
 
 #@dp.message_handler(commands=['start', 'help'])
 async def command_start(message : types.Message):
@@ -19,7 +19,7 @@ async def destination_command(message : types.Message):
     await bot.send_message(message.from_user.id, 'Blumenstrasse, 13!', reply_markup=ReplyKeyboardRemove())
 
 async def gallery_menu_command(message : types.Message):
-    await sqllite_db.sql_read(message)
+    await sql_read(message)
 
 def register_handlers_client(dp : Dispatcher):
     dp.register_message_handler(command_start, commands=['start', 'help'])

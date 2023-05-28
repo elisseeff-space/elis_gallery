@@ -3,7 +3,7 @@ from create_bot import bot
 
 def sql_start():
     global dbase, cur
-    dbase = sq.connect('elis_gallery.db')
+    dbase = sq.connect('/home/pavel/github/elis_gallery/data_base/elis_gallery.db')
     cur = dbase.cursor()
     if dbase:
         print('Data base connected Ok!')

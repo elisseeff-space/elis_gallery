@@ -2,3 +2,5 @@ venv
 *.log
 config*
 cfg
+*.db
+log/
